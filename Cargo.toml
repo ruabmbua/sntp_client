@@ -5,7 +5,7 @@ authors = ["Roland Ruckerbauer <roland.rucky@gmail.com>"]
 description = "sntp client command line utility"
 repository = "https://github.com/ruabmbua/sntp_client"
 readme = "README.md"
-keywords = ["sntp", "utility", "client", "command line"]
+keywords = ["sntp", "utility", "client", "commandline"]
 license = "GPL3"
 
 [dependencies]
