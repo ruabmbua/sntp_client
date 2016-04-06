@@ -6,7 +6,7 @@ description = "sntp client command line utility"
 repository = "https://github.com/ruabmbua/sntp_client"
 readme = "README.md"
 keywords = ["sntp", "utility", "client", "commandline"]
-license = "GPL3"
+license = "GPL-3.0+"
 
 [dependencies]
 byteorder = "0.5.1"
