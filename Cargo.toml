@@ -1,0 +1,9 @@
+[package]
+name = "sntp"
+version = "1.0.0"
+authors = ["Roland Ruckerbauer <roland.rucky@gmail.com>"]
+
+[dependencies]
+byteorder = "0.5.1"
+time = "0.1.35"
+clap = { version = "2.2.5", features = ["unstable"] }
