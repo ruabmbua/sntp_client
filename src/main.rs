@@ -5,12 +5,14 @@ extern crate clap;
 
 use std::net::UdpSocket;
 use std::process;
+use std::time::Duration;
+use std::io::ErrorKind;
 use byteorder::{BigEndian, ByteOrder};
 
 fn main() {
     // Setting up command line argument parser
     let matches = clap_app!(sntp =>
-        (version: "1.1.0")
+        (version: "1.2.0")
         (author: "Roland Ruckerbauer <roland.rucky@gmail.com>")
         (about: "Fetches time from the given time server and outputs it formatted")
         (@arg HOST: +required "Sets the host of the sntp server")
@@ -44,6 +46,7 @@ fn main() {
         process::exit(-1);
     }
     let socket = socket_result.unwrap();
+    socket.set_read_timeout(Some(Duration::from_secs(5))).unwrap();
 
     // Send the request to the server
     match socket.send_to(&buf, (matches.value_of("HOST").unwrap(), port)) {
@@ -62,7 +65,11 @@ fn main() {
     // Receive the response from the sntp sever
     match socket.recv_from(&mut buf) {
         Err(error) => {
-            println!("Error: {}", error);
+            match error.kind() {
+                ErrorKind::TimedOut | ErrorKind::WouldBlock =>
+                        println!("Error: No response from server in time"),
+                _ => println!("Error: {}", error)
+            }
             process::exit(-1);
         },
         Ok((rec, _)) => {
