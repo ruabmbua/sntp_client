@@ -1,3 +1,22 @@
+/// **************************************************************************
+/// Copyright (c) 2015 Roland Ruckerbauer All Rights Reserved.
+///
+/// This file is part of sntp.
+///
+/// sntp_client is free software: you can redistribute it and/or modify
+/// it under the terms of the GNU General Public License as published by
+/// the Free Software Foundation, either version 3 of the License, or
+/// (at your option) any later version.
+///
+/// sntp_client is distributed in the hope that it will be useful,
+/// but WITHOUT ANY WARRANTY; without even the implied warranty of
+/// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+/// GNU General Public License for more details.
+///
+/// You should have received a copy of the GNU General Public License
+/// along with sntp_client.  If not, see <http://www.gnu.org/licenses/>.
+/// *************************************************************************
+
 extern crate byteorder;
 extern crate time;
 #[macro_use]
@@ -11,7 +30,7 @@ use byteorder::{BigEndian, ByteOrder};
 
 fn main() {
     // Setting up command line argument parser
-    let matches = clap_app!(sntp =>
+    let matches = clap_app!(sntp_client =>
         (version: "1.2.0")
         (author: "Roland Ruckerbauer <roland.rucky@gmail.com>")
         (about: "Fetches time from the given time server and outputs it formatted")

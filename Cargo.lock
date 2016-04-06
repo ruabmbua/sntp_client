@@ -1,5 +1,5 @@
 [root]
-name = "sntp"
+name = "sntp_client"
 version = "1.2.0"
 dependencies = [
  "byteorder 0.5.1 (registry+https://github.com/rust-lang/crates.io-index)",

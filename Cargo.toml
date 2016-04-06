@@ -1,7 +1,12 @@
 [package]
-name = "sntp"
+name = "sntp_client"
 version = "1.2.0"
 authors = ["Roland Ruckerbauer <roland.rucky@gmail.com>"]
+description = "sntp client command line utility"
+repository = "https://github.com/ruabmbua/sntp_client"
+readme = "README.md"
+keywords = ["sntp", "utility", "client", "command line"]
+license = "GPL3"
 
 [dependencies]
 byteorder = "0.5.1"
