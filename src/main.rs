@@ -10,12 +10,13 @@ use byteorder::{BigEndian, ByteOrder};
 fn main() {
     // Setting up command line argument parser
     let matches = clap_app!(sntp =>
-        (version: "1.0.0")
+        (version: "1.1.0")
         (author: "Roland Ruckerbauer <roland.rucky@gmail.com>")
         (about: "Fetches time from the given time server and outputs it formatted")
         (@arg HOST: +required "Sets the host of the sntp server")
         (@arg PORT: "Sets the port of the sntp server")
         (@arg format: -f --format +takes_value "Sets a custom format for printing the time")
+        (@arg pure: -p --pure "Only output the time")
     ).get_matches();
 
     // Extract port value
@@ -83,12 +84,19 @@ fn main() {
     let time = time::at(timespec);
 
     // Print out time components with formatters
+    let hide_extra = matches.is_present("pure");
     match matches.value_of("format") {
-        None => println!("Time (asctime): {}", time.asctime()),
+        None => {
+            if !hide_extra { print!("Time (asctime): "); }
+            println!("{}", time.asctime());
+        },
         Some(format) => {
             match time.strftime(format) {
                 Err(error) => println!("Error in time format: {}", error),
-                Ok(formatter) => println!("Time (custom): {}", formatter)
+                Ok(formatter) => {
+                    if !hide_extra { print!("Time (custom): "); }
+                    println!("{}", formatter);
+                }
             }
         }
     }
